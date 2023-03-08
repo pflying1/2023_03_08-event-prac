@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  header{
+    width: 100vw;
+    height: 200px;
+    background-color: #333;
+    /* flex-set */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  header > button {
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 5%;
+    background-color: burlywood;
+  }
+  #root {
+    display: flex;
+    flex-direction: row;
+  }
+
+</style>
+<body>
+  <header>
+    <button id="add-button">만들어줘</button>
+    <button id="render-button">출력해줘</button>
+  </header>
+  <div id="root"></div>
+  <script>
+    const addButton = document.getElementById('add-button');
+    const renderButton = document.getElementById('render-button');
+    const root = document.getElementById('root');
+
+    const tags = [];
+
+    let count
+    addButton.addEventListener('click', () => {
+      count++;
+      console.log("count 변수 값 :", count);
+      console.log("배열의 길이 값 :", tags.length);
+      const tag = document.createElement('div');
+      tag.style.width = '100px';
+      tag.style.height = '100px';
+      tag.style.border = '1px solid black';
+      tag.style.borderRadius = '5%';
+      tag.style.backgroundColor = 'royalblue';
+      tag.textContent = count + "번째 태그";
+      tags.push(tag);
+      console.log(tags);
+    });
+
+    renderButton.addEventListener('click', function() {
+      if(tags.length !==0) {
+        for(let i = 0; i< tags.length; i++) {
+          root.appendChild(tags[i]);
+        }
+      }else {
+        console.error('태그를 추가해');
+      }
+    })
+  </script>
+</body>
+</html>
